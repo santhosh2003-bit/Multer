@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>multer</title>
+  </head>
+  <body>
+    <input type="file" name="image" accept="Image/*" id="imageUploading" />
+    <button type="submit" onclick="uploadImage()">Upload Image</button>
+  </body>
+  <script>
+    const imageUploading = document.getElementById("imageUploading");
+    function uploadImage() {
+      console.log("Hello");
+      const image = imageUploading.files[0];
+      console.log(image);
+      if (image) {
+        const formData = new FormData();
+        formData.append("avatar", image);
+        fetch("http://localhost:3000/upload", {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+          });
+      }
+    }
+  </script>
+</html>
